@@ -21,5 +21,24 @@ class Quiz extends React.Component {
         this.setState({ trivia: questions });
       });
   }
-  
+
+  nextQuestion() {
+    let nextQuestion = this.state.currentQuestion + 1;
+    this.setState({ currentQuestion: nextQuestion });
+  }
+
+  render() {
+    if (this.state.trivia.length === 0) {
+      return <h1>Loading Questions</h1>
+    } else {
+      return (
+        <Question
+          trivia={this.state.trivia[this.state.currentQuestion]}
+          nextQuestion={this.nextQuestion} />
+      )
+    }
+  }
+
 }
+
+export default Quiz;
